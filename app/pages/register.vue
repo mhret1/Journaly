@@ -1,7 +1,42 @@
 <script setup lang="ts">
 const email = ref("");
+const firstName = ref("");
+const lastName = ref("");
+
 const show = ref(false);
 const password = ref("");
+
+function checkStrength(str: string) {
+  const requirements = [
+    { regex: /.{8,}/, text: "At least 8 characters" },
+    { regex: /\d/, text: "At least 1 number" },
+    { regex: /[a-z]/, text: "At least 1 lowercase letter" },
+    { regex: /[A-Z]/, text: "At least 1 uppercase letter" },
+  ];
+
+  return requirements.map((req) => ({
+    met: req.regex.test(str),
+    text: req.text,
+  }));
+}
+
+const strength = computed(() => checkStrength(password.value));
+const score = computed(() => strength.value.filter((req) => req.met).length);
+
+const color = computed(() => {
+  if (score.value === 0) return "neutral";
+  if (score.value <= 1) return "error";
+  if (score.value <= 2) return "warning";
+  if (score.value === 3) return "warning";
+  return "success";
+});
+
+const text = computed(() => {
+  if (score.value === 0) return "Enter a password";
+  if (score.value <= 2) return "Weak password";
+  if (score.value === 3) return "Medium password";
+  return "Strong password";
+});
 </script>
 <template>
   <div
@@ -21,36 +56,46 @@ const password = ref("");
         <span class="journaly text-5xl">Journaly</span>
       </div>
       <div
-        class="text-center my-10 opacity-70"
+        class="text-center font-light my-10 opacity-70"
         style="margin-top: 1.3rem; margin-bottom: 1.5rem; width: 450px"
       >
         Build your system effortlessly with our powerful yet simple journaling
         platform.
       </div>
       <div class="flex flex-col w-2/3" style="width: 450px">
+        <UFormField class="w-full">
+          <UInput
+            v-model="firstName"
+            placeholder="First Name"
+            :ui="{ base: 'peer' }"
+            class="w-full mb-4 flex items-center"
+            size="xl"
+          >
+          </UInput>
+          <UInput
+            v-model="lastName"
+            placeholder="Last Name"
+            :ui="{ base: 'peer' }"
+            class="w-full mb-4 flex items-center"
+            size="xl"
+          >
+          </UInput>
+          <UInput
+            v-model="email"
+            placeholder="E-mail"
+            :ui="{ base: 'peer' }"
+            class="w-full flex items-center"
+            size="xl"
+          >
+          </UInput>
+        </UFormField>
+        <PasswordInput />
         <UButton
-          size="xl"
-          class="px-9 flex justify-center"
+          class="px-9 mt-1 flex justify-center"
           color="primary"
-          variant="outline"
-          ><img
-            src="../assets/svg/google.svg"
-            style="width: 20px"
-            alt=""
-            class="mx-2"
-          />Register with Google</UButton
-        >
-        <UButton
+          variant="solid"
           size="xl"
-          class="px-9 my-3 flex justify-center"
-          color="primary"
-          variant="outline"
-          ><img
-            src="../assets/svg/apple.svg"
-            style="width: 25px"
-            alt=""
-            class="mr-2"
-          />Register with Apple</UButton
+          >Register</UButton
         >
       </div>
       <div style="margin-top: 0.2rem">

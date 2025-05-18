@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex fixed top-0 left-0 w-screen overflow-x-hidden justify-between py-10 px-32 items-center"
+    class="flex fixed font-light top-0 left-0 w-screen overflow-x-hidden justify-between py-10 px-32 items-center"
   >
     <div class="navbar__title text-4xl">Journaly</div>
     <div class="flex items-center">

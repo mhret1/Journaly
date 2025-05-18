@@ -2,18 +2,16 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
-  modules: [
-    '@nuxt/ui',
-    '@nuxt/eslint',
-    '@nuxt/image',
-    '@nuxt/icon'
+  modules: ["@nuxt/ui", "@nuxt/eslint", "@nuxt/image", "@nuxt/icon"],
+  css: [
+    "~/assets/css/main.css",
+    "nprogress/nprogress.css",
+    "~/assets/css/nprogress.css",
   ],
 
-  css: ['~/assets/css/main.css'],
-
   future: {
-    compatibilityVersion: 4
+    compatibilityVersion: 4,
   },
 
-  compatibilityDate: '2024-11-27'
-})
+  compatibilityDate: "2024-11-27",
+});

@@ -28,29 +28,42 @@ const password = ref("");
         platform.
       </div>
       <div class="flex flex-col w-2/3" style="width: 450px">
-        <UButton
+        <UInput
+          v-model="email"
+          placeholder="E-mail"
+          :ui="{ base: 'peer' }"
+          class="w-full mb-4 flex items-center"
           size="xl"
-          class="px-9 flex justify-center"
-          color="primary"
-          variant="outline"
-          ><img
-            src="../assets/svg/google.svg"
-            style="width: 20px"
-            alt=""
-            class="mx-2"
-          />Login with Google</UButton
         >
-        <UButton
+        </UInput>
+        <UInput
+          v-model="password"
+          placeholder="Password"
+          :type="show ? 'text' : 'password'"
+          :ui="{ trailing: 'pe-1', base: 'peer' }"
+          aria-describedby="password-strength"
+          class="w-full mb-4"
           size="xl"
-          class="px-9 my-3 flex justify-center"
+        >
+          <template #trailing>
+            <UButton
+              color="neutral"
+              variant="link"
+              size="sm"
+              :icon="show ? 'i-lucide-eye-off' : 'i-lucide-eye'"
+              :aria-label="show ? 'Hide password' : 'Show password'"
+              :aria-pressed="show"
+              aria-controls="password"
+              @click="show = !show"
+            />
+          </template>
+        </UInput>
+        <UButton
+          class="px-9  flex justify-center"
           color="primary"
-          variant="outline"
-          ><img
-            src="../assets/svg/apple.svg"
-            style="width: 25px"
-            alt=""
-            class="mr-2"
-          />Login with Apple</UButton
+          variant="solid"
+          size="xl"
+          >Login</UButton
         >
       </div>
       <div style="margin-top: 0.2rem">
