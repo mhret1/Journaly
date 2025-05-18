@@ -38,14 +38,13 @@
         <div class="text-5xl font-extrabold leading-14 text-primary">
           Simplify your tradig journey with Journaly
         </div>
-        <div class="opacity-70 font-light my-4">
+        <div class="opacity-70 font-light my-8">
           Easily track and analyze your trades with our intuitive journaling
           platform.
         </div>
         <UButton
           label="Get started"
-          size="xl"
-          class="mr-5 navbar__button"
+          class="mr-5 px-10 py-4 navbar__button"
           to="/register"
         />
       </div>
